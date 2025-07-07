@@ -45,4 +45,9 @@
       <xs:documentation>Used to turn off build warnings about mismatched On_PropertyName_Changed methods.</xs:documentation>
     </xs:annotation>
   </xs:attribute>
+  <xs:attribute name="OnlyAddINotifyPropertyChangedInterfaceAttribute" type="xs:boolean">
+    <xs:annotation>
+      <xs:documentation>Used to turn on only classes that add AddINotifyQualityChangedInterfaceAttribute will be woven.</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
 </xs:complexType>

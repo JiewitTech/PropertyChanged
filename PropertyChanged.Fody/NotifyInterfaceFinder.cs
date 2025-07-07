@@ -35,7 +35,7 @@ public partial class ModuleWeaver
 
         foreach (var interfaceImplementation in typeDefinition.Interfaces)
         {
-            if (interfaceImplementation.InterfaceType.Name == "INotifyPropertyChanged")
+            if (interfaceImplementation.InterfaceType.Name == "INotifyPropertyChanged" && OnlyAddINotifyPropertyChangedInterfaceAttribute == false)
             {
                 typesImplementingINotify[fullName] = true;
                 return true;
