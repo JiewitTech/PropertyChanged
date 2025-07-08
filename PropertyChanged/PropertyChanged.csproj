@@ -3,16 +3,15 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net40</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
     <Authors>Simon Cropp</Authors>
     <Description>Add property notification to all classes that implement INotifyPropertyChanged.</Description>
     <PackageTags>Xaml, MVVM, INotifyPropertyChanged, DataBinding, ILWeaving, Cecil</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
-    <PackageIconUrl>https://raw.githubusercontent.com/Fody/PropertyChanged/master/package_icon.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/Fody/PropertyChanged</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/1093439315/PropertyChanged</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <WeaverPropsFile>$(MSBuildThisFileDirectory)Weaver.props</WeaverPropsFile>
+    <PackageId>Jiewit.$(MSBuildProjectName).Fody</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.8.0" PrivateAssets="none" />
