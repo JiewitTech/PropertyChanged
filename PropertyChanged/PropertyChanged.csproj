@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net40</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Authors>Simon Cropp</Authors>
+    <Authors>JiewitTech</Authors>
     <Description>Add property notification to all classes that implement INotifyPropertyChanged.</Description>
     <PackageTags>Xaml, MVVM, INotifyPropertyChanged, DataBinding, ILWeaving, Cecil</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
