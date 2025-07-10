@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mono.Cecil;
@@ -35,7 +35,7 @@ public partial class ModuleWeaver
 
         foreach (var interfaceImplementation in typeDefinition.Interfaces)
         {
-            if (interfaceImplementation.InterfaceType.Name == "INotifyPropertyChanged" && OnlyAddINotifyPropertyChangedInterfaceAttribute == false)
+            if (interfaceImplementation.InterfaceType.Name == "INotifyPropertyChanged")
             {
                 typesImplementingINotify[fullName] = true;
                 return true;

@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <LangVersion>preview</LangVersion>
     <NoWarn>NU5118</NoWarn>
     <ResolveAssemblyReferencesSilent>true</ResolveAssemblyReferencesSilent>

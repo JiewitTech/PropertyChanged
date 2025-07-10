@@ -59,7 +59,7 @@ public partial class ModuleWeaver
             {
                 if (HierarchyImplementsINotify(node.TypeDefinition))
                 {
-                    if (HasGeneratedPropertyChangedEvent(node.TypeDefinition))
+                    if (HasGeneratedPropertyChangedEvent(node.TypeDefinition) || OnlyAddINotifyPropertyChangedInterfaceAttribute == true)
                     {
                         // The source generator handled the attribute, this is not an error.
                         continue;
