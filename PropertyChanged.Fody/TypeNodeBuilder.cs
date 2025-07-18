@@ -42,7 +42,7 @@ public partial class ModuleWeaver
     {
         foreach (var node in typeNodes)
         {
-            if (HierarchyImplementsINotify(node.TypeDefinition))
+            if (HierarchyImplementsINotify(node.TypeDefinition) && OnlyAddINotifyPropertyChangedInterfaceAttribute == false)
             {
                 NotifyNodes.Add(node);
                 continue;
