@@ -30,11 +30,13 @@ public partial class ModuleWeaver
             AddClass(typeDefinition);
         }
 
+        //已实现INotifyPropertyChanged接口的类 且 没有加AddINotifyPropertyChangedInterfaceAttribute特性的类
         PopulateINotifyNodes(Nodes);
         foreach (var notifyNode in NotifyNodes)
         {
             Nodes.Remove(notifyNode);
         }
+        //加AddINotifyPropertyChangedInterfaceAttribute特性的类
         PopulateInjectedINotifyNodes(Nodes);
     }
 
@@ -42,10 +44,13 @@ public partial class ModuleWeaver
     {
         foreach (var node in typeNodes)
         {
-            if (HierarchyImplementsINotify(node.TypeDefinition) && OnlyAddINotifyPropertyChangedInterfaceAttribute == false)
+            if (HierarchyImplementsINotify(node.TypeDefinition) && !HasNotifyPropertyChangedAttribute(node.TypeDefinition))
             {
-                NotifyNodes.Add(node);
-                continue;
+                if (!OnlyAddINotifyPropertyChangedInterfaceAttribute)
+                {
+                    NotifyNodes.Add(node);
+                    continue;
+                }
             }
             PopulateINotifyNodes(node.Nodes);
         }
@@ -57,21 +62,12 @@ public partial class ModuleWeaver
         {
             if (HasNotifyPropertyChangedAttribute(node.TypeDefinition))
             {
-                if (HierarchyImplementsINotify(node.TypeDefinition))
-                {
-                    if (HasGeneratedPropertyChangedEvent(node.TypeDefinition) || OnlyAddINotifyPropertyChangedInterfaceAttribute == true)
-                    {
-                        // The source generator handled the attribute, this is not an error.
-                        continue;
-                    }
+                var hasImplementINotifyPropertyChanged = false;
+                if (HierarchyImplementsINotify(node.TypeDefinition) || node.TypeDefinition.GetPropertyChangedAddMethods().Any())
+                    hasImplementINotifyPropertyChanged = true;
 
-                    throw new WeavingException($"The type '{node.TypeDefinition.FullName}' already implements INotifyPropertyChanged so [AddINotifyPropertyChangedInterfaceAttribute] is redundant.");
-                }
-                if (node.TypeDefinition.GetPropertyChangedAddMethods().Any())
-                {
-                    throw new WeavingException($"The type '{node.TypeDefinition.FullName}' already has a PropertyChanged event. If type has a [AddINotifyPropertyChangedInterfaceAttribute] then the PropertyChanged event can be removed.");
-                }
-                InjectINotifyPropertyChangedInterface(node.TypeDefinition);
+                if (!hasImplementINotifyPropertyChanged)
+                    InjectINotifyPropertyChangedInterface(node.TypeDefinition);
                 NotifyNodes.Add(node);
                 continue;
             }
